@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: db_app
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shortlinks
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis_app
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  app:
+    build: .
+    container_name: fastapi_app
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/shortlinks"
+      REDIS_URL: "redis://redis:6379/0"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./alembic.ini:/app/alembic.ini
+      - ./migrations:/app/migrations
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres_data:
+  redis_data:
