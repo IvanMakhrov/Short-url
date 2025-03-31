@@ -270,12 +270,12 @@ open htmlcov/index.html
 ```
 
 #### 2. Нагрузочные тесты
-Запуск locust<br>
+1. Запуск locust<br>
 ```bash
 locust -f tests/load_test/locustfile.py
 ```
-Запуск тестов<br>
-http://0.0.0.0:8089/
+2. Переходим на http://0.0.0.0:8089/
+3. Указываем значения в полях Number of users и Ramp up, Host оставляем пустым
 
 ### Деплой сервиса
 ![Alt text](https://github.com/IvanMakhrov/Short-url/blob/main/images/docker.png?raw=true)
