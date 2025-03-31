@@ -84,7 +84,7 @@ docker-compose up -d --build
 {"short_code": "http://localhost:8000/links/my-link"} 
 ```
 
----
+-
 
 2. GET/links/{short_code} - Перейти на url адрес по короткой ссылке<br>
 Доступно всем пользователям<br>
@@ -95,7 +95,7 @@ GET http://localhost:8000/links/custom_link
 ```
 В результате происходит редирект на https://example.com/
 
----
+-
 
 3. DELETE /links/{short_code} - Удаление короткой ссылки из БД<br>
 Доступно только авторизованным пользователям. Можно удалять только свои ссылки<br>
