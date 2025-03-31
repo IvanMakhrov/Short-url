@@ -68,7 +68,7 @@ docker-compose up -d --build
 
 ### 🔐 Авторизация
 
-#### 1. POST http://localhost:8000/auth/register
+#### 1. POST /auth/register
 Регистрация пользователя<br>
 Пример запроса:<br>
 ```json
@@ -91,7 +91,7 @@ docker-compose up -d --build
 }
 ```
 
-#### 2. POST http://localhost:8000/auth/jwt/login
+#### 2. POST /auth/jwt/login
 Авторизация пользователя<br>
 Параметры:
 - username (обязательно)
@@ -105,7 +105,7 @@ docker-compose up -d --build
 }
 ```
 
-#### 3. POST http://localhost:8000/auth/jwt/logout
+#### 3. POST /auth/jwt/logout
 Выход пользователя<br>
 Пример запроса:<br>
 ```
