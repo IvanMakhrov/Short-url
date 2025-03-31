@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.database import get_async_session
 from src.short_url.schemas import LinkCreate
@@ -45,18 +45,22 @@ async def create_short_link(
 
 
 @router.get("/{short_code}")
-async def redirect_to_original(short_code: str, session: AsyncSession = Depends(get_async_session)):
+async def redirect_to_original(request: Request, short_code: str, session: AsyncSession = Depends(get_async_session)):
+    request_type = str(request.headers.get("sec-purpose")).lower()
     cached_link = await get_cached_link(short_code)
+
     if cached_link:
-        await crud.count_clicks_in_cache(session, short_code)
+        if not any(x in request_type for x in ['preview', 'prefetch', 'prerender']):
+            await crud.count_clicks_in_cache(session, short_code)
         return RedirectResponse(url=cached_link.original_url)
     
     link = await crud.get_link_by_short_code(session, short_code)
     if not link or (link.expires_at and link.expires_at < datetime.datetime.now()):
         raise HTTPException(status_code=404, detail="Link not found or expired")
     
-    await crud.update_link_stats(session, link)
-    await cache_link(link)
+    if not any(x in request_type for x in ['preview', 'prefetch', 'prerender']):
+        await crud.update_link_stats(session, link)
+        await cache_link(link)
     
     return RedirectResponse(url=link.original_url)
 
