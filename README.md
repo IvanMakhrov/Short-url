@@ -259,10 +259,10 @@ python3 -m coverage report
 
 Также можно посмотреть отчет о покрытии тестами<br>
 ```bash
-open index.html
+open htmlcov/index.html
 ```
 
-Ниже представлены скриншоты деплоя сервиса и тестов
+Ниже представлены скриншоты тестов и деплоя сервиса
 
 ### Деплой сервиса
 ![Alt text](https://github.com/IvanMakhrov/Short-url/blob/main/images/docker.png?raw=true)
