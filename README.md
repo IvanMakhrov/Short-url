@@ -25,9 +25,7 @@ docker-compose up -d --build
 | FastAPI | API сервис <br> Документация: http://0.0.0.0:8000/docs |
 | Redis | Кеширование запросов |
 
----
-
-## 🗃 Структура базы данных
+## 📊 Структура базы данных
 
 ### Таблица links
 | Поле | Тип | Описание |
@@ -62,11 +60,50 @@ docker-compose up -d --build
 ## 🌐 Основные роутеры
 
 ### 🔐 Авторизация
-- POST /auth/register - Регистрация пользователя
-- POST /auth/jwt/login - Авторизация пользователя
-- POST /auth/jwt/logout - Выход пользователя
 
----
+#### 1. POST http://localhost:8000/auth/register
+Регистрация пользователя<br>
+Пример запроса:<br>
+```json
+{
+  "email": "string",
+  "password": "string",
+  "is_active": true,
+  "is_superuser": false,
+  "is_verified": false
+}
+```
+Пример ответа:<br>
+```json
+{
+  "id": 2,
+  "email": "string1",
+  "is_active": true,
+  "is_superuser": false,
+  "is_verified": false
+}
+```
+
+#### 2. POST http://localhost:8000/auth/jwt/login
+Авторизация пользователя<br>
+Параметры:
+- username (обязательно)
+- password (обязательно)
+
+Пример ответа:<br>
+```json
+{
+  "access_token": "token",
+  "token_type": "bearer"
+}
+```
+
+#### 3. POST http://localhost:8000/auth/jwt/logout
+Выход пользователя<br>
+Пример запроса:<br>
+```
+http://localhost:8000/auth/jwt/logout
+```
 
 ### 🔗 Взаимодействие с URL
 
@@ -175,8 +212,6 @@ PATCH http://localhost:8000/links/82cc5b/expiration?expires_at=2025-03-31T15%3A3
   "expires_at": "2025-03-30T15:30:00"
 }
 ```
-
----
 
 ### 🔧 Тестовые роутеры
 #### 1. GET /protected-route
