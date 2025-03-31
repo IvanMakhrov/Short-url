@@ -252,6 +252,8 @@ GET http://localhost:8000/unprotected-route
 ---
 
 ## 📊 Тесты и деплой
+
+#### 1. Юнит тесты и функциональные тесты
 Запуск тестов<br>
 ```bash
 pytest --cov=src --cov-report=html tests/ 
@@ -267,7 +269,13 @@ python3 -m coverage report
 open htmlcov/index.html
 ```
 
-Ниже представлены скриншоты тестов и деплоя сервиса
+#### 2. Нагрузочные тесты
+Запуск locust<br>
+```bash
+locust -f tests/load_test/locustfile.py
+```
+Запуск тестов<br>
+http://0.0.0.0:8089/
 
 ### Деплой сервиса
 ![Alt text](https://github.com/IvanMakhrov/Short-url/blob/main/images/docker.png?raw=true)
