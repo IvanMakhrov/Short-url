@@ -21,12 +21,8 @@ docker-compose up -d --build
 
 | Технология | Описание |
 |------------|----------|
-| Postgres | База данных для хранения информации о пользователях и ссылках |
-| Postgres | URL: jdbc:postgresql://localhost:5432/shortlinks |
-| Postgres | Username: postgres |
-| Postgres | Password: postgres |
-| FastAPI | API сервис |
-| FastAPI | Документация: http://0.0.0.0:8000/docs |
+| Postgres | База данных для хранения информации о пользователях и ссылках <br> URL: jdbc:postgresql://localhost:5432/shortlinks <br> Username: postgres <br> Password: postgres |
+| FastAPI | API сервис <br> Документация: http://0.0.0.0:8000/docs |
 | Redis | Кеширование запросов |
 
 ---
