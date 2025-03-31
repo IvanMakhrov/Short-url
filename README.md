@@ -204,7 +204,7 @@ GET http://localhost:8000/links/search/custom_link
   }
   ```
 
-#### 7.PATCH /links{short_link}/expiration
+#### 7. PATCH /links{short_link}/expiration
 Обновить дату когда ссылка станет недействительной (дополнительный роутер)<br>
 Доступно только авторизованным пользователям. Можно обновлять только свои ссылки<br>
 
